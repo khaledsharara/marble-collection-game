@@ -54,10 +54,25 @@ class MarbleGame:
 
 
 def main():
-    agent1 = Agent("Khaled")
-    agent2 = Agent("Abdelrahman")
-    game = MarbleGame()
-    game.play_game(agent1, agent2)
+    """
+    Game Premise:
+    Start with 11 marbles on the table.
+    Two players take turns.
+    On each turn, a player can take 1 or 2 marbles.
+    The player who takes the last marble wins the game.
+
+    Objective:
+    The goal is to take the last marble and win.
+    """
+    while True:
+        agent1 = Agent("Khaled")
+        agent2 = Agent("Abdelrahman")
+        game = MarbleGame()
+        game.play_game(agent1, agent2)
+
+        play_again = input("Do you want to play again? (y/n): ")
+        if play_again.lower() != "y":
+            break
 
 
 if __name__ == "__main__":
