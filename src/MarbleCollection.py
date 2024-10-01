@@ -15,17 +15,14 @@ class Agent:
         marbles_left: int = gameState.marbles
 
         if marbles_left == 1:
-            # The agent has no other choice than to move the last marble
+            # The agent has no other choice than to take the last marble
             return 1
         elif marbles_left == 2:
-            # The agent takes the last marble, winning the game
-            return 1
-        elif marbles_left == 3:
-            # The agent takes the last two marble, winning the game
+            # The agent takes the two marble, winning the game
             return 2
         else:
             # The agent takes a random number of marbles
-            return random.randint(1, 3)
+            return random.randint(1, 2)
 
 
 class MarbleGame:
@@ -51,9 +48,9 @@ class MarbleGame:
                 f"{current_agent.name} took {marble_to_take} marbles. {self.marbles} marbles left"
             )
             if self.marbles == 0:
-                print(f"{agent1.name if agent1 != current_agent else agent2.name} won!")
-            current_agent = agent1 if current_agent == agent2 else agent2
-        pass
+                print(f"{current_agent.name} won!")
+            else:
+                current_agent = agent1 if current_agent == agent2 else agent2
 
 
 def main():
@@ -61,6 +58,7 @@ def main():
     agent2 = Agent("Abdelrahman")
     game = MarbleGame()
     game.play_game(agent1, agent2)
+
 
 if __name__ == "__main__":
     main()
