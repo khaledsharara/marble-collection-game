@@ -2,7 +2,7 @@ import random
 
 
 class Agent:
-    def __init__(self, name : str):
+    def __init__(self, name: str):
         self.name = name
         self.marbles = []
 
@@ -12,7 +12,7 @@ class Agent:
 
         :param gameState: The current game state
         """
-        marbles_left : int = gameState.marbles
+        marbles_left: int = gameState.marbles
 
         if marbles_left == 1:
             # The agent has no other choice than to move the last marble
@@ -27,30 +27,34 @@ class Agent:
             # The agent takes a random number of marbles
             return random.randint(1, 3)
 
+
 class MarbleGame:
     def __init__(self):
         self.agents: list[Agent] = []
-        self.marbles : int = 11
+        self.marbles: int = 11
 
     def play_game(self, agent1: Agent, agent2: Agent):
         """
         Play a game between two agents. The game is played by taking turns between the two
-        agents until there are no more marbles left. The game is played by calling the 
+        agents until there are no more marbles left. The game is played by calling the
         getAction method on each agent in turn. First to  First player is selected at random.
 
         :param agent1: The first agent
         :param agent2: The second agent
         """
 
-        current_agent : Agent = random.choice([agent1, agent2])
+        current_agent: Agent = random.choice([agent1, agent2])
         while self.marbles > 0:
             marble_to_take = current_agent.getAction(self)
             self.marbles -= marble_to_take
-            print(f"{current_agent.name} took {marble_to_take} marbles. {self.marbles} marbles left")
+            print(
+                f"{current_agent.name} took {marble_to_take} marbles. {self.marbles} marbles left"
+            )
             if self.marbles == 0:
-                print(f"{current_agent.name} lost!")
+                print(f"{agent1.name if agent1 != current_agent else agent2.name} won!")
             current_agent = agent1 if current_agent == agent2 else agent2
         pass
+
 
 def main():
     agent1 = Agent("Khaled")
@@ -58,5 +62,5 @@ def main():
     game = MarbleGame()
     game.play_game(agent1, agent2)
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
