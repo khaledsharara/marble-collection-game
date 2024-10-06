@@ -6,7 +6,7 @@ class Agent:
         self.name = name
         self.marbles = []
 
-    def getAction(self, gameState: "MarbleGame"):
+    def getAction(self, gameState: "MarbleGame") -> int:
         """
         Decide the agent's move depending on the game's state
 
@@ -30,11 +30,12 @@ class MarbleGame:
         self.agents: list[Agent] = []
         self.marbles: int = 11
 
-    def play_game(self, agent1: Agent, agent2: Agent):
+    def play_game(self, agent1: Agent, agent2: Agent) -> None:
         """
         Play a game between two agents. The game is played by taking turns between the two
         agents until there are no more marbles left. The game is played by calling the
-        getAction method on each agent in turn. First to  First player is selected at random.
+        getAction method on each agent in turn. First player is selected at random.
+        The player who takes the last marble wins the game.
 
         :param agent1: The first agent
         :param agent2: The second agent
